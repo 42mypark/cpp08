@@ -39,8 +39,8 @@ int main() {
 
   DivTest();
 
-  int a2[] = {123, 234, 345, 456, 567, 678, 11, 111, 0, -39};
-  s.AddNumber(a2, 10);
+  int a2[] = {123, 234, 345, 456, 567, 678, 11, 111, 0};
+  s.AddNumber(a2, 9);
   s.ShowInside();
   std::cout << "longest  span : " << s.LongestSpan() << '\n';
   std::cout << "shortest span : " << s.ShortestSpan() << '\n';
@@ -49,8 +49,19 @@ int main() {
   DivTest();
 
   std::cout << "[OverCapacityException Test]" << '\n';
+  Span s2(s);
   try {
     s.AddNumber(777);
+    s.AddNumber(777);
+    s.AddNumber(778);
+  } catch (const std::exception& e) {
+    std::cerr << e.what() << '\n';
+  }
+  try {
+    int a2[] = {999, 999};
+    s2.AddNumber(a2, 2);
+    int a3[] = {997, 998};
+    s2.AddNumber(a2, 2);
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
   }

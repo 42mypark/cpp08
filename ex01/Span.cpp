@@ -1,5 +1,6 @@
 #include "Span.hpp"
 
+#include <algorithm>
 #include <iostream>
 
 Span::~Span() {
@@ -21,20 +22,28 @@ Span& Span::operator=(const Span& sp) {
   return *this;
 }
 
+bool Span::AlreadyIn(int num) {
+  if (std::find(this->begin(), this->end(), num) != this->end())
+    return true;
+  return false;
+}
+
 unsigned int Span::getSize() const {
   return size_;
 }
 
 void Span::AddNumber(int num) {
-  if (this->size() == size_)
+  if (AlreadyIn(num))
+    return;
+  if (this->size() >= size_)
     throw OverCapacityException();
   this->insert(num);
 }
 
 void Span::AddNumber(int* arr, int n) {
-  if (this->size() == size_)
-    throw OverCapacityException();
-  this->insert(arr, arr + n);
+  for (int i = 0; i < n; i++) {
+    AddNumber(arr[i]);
+  }
 }
 
 void Span::ShowInside() const {

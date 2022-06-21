@@ -6,6 +6,7 @@ class Span : private std::set<int> {
  private:
   unsigned int size_;
   Span();
+  bool AlreadyIn(int num);
 
  public:
   ~Span();
