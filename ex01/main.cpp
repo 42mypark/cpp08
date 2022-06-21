@@ -49,19 +49,32 @@ int main() {
   DivTest();
 
   std::cout << "[OverCapacityException Test]" << '\n';
+  Span s1(s);
   Span s2(s);
+  Span s3 = s;
+  std::cout << "#1" << '\n';
   try {
-    s.AddNumber(777);
-    s.AddNumber(777);
-    s.AddNumber(778);
+    s1.AddNumber(777);
+    s1.AddNumber(777);
+    s1.AddNumber(778);
+    s1.ShowInside();
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
   }
+  std::cout << "#2" << '\n';
   try {
-    int a2[] = {999, 999};
-    s2.AddNumber(a2, 2);
-    int a3[] = {997, 998};
-    s2.AddNumber(a2, 2);
+    int b[] = {997, 998};
+    s2.AddNumber(b, 2);
+    s2.ShowInside();
+  } catch (const std::exception& e) {
+    std::cerr << e.what() << '\n';
+  }
+  std::cout << "#3" << '\n';
+  try {
+    // int a1[] = {8, 10, 2, 20, 30, 7, 50, 100, -1, -27};
+    int b[] = {8, 10, 2, 20, 30, 7, 50, 100, -1, -27, 997, 997};
+    s3.AddNumber(b, 2);
+    s3.ShowInside();
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
   }

@@ -1,9 +1,10 @@
 #ifndef MutantStack_HPP
 #define MutantStack_HPP
 #include <deque>
+#include <stack>
 
 template <typename T, typename Cont = std::deque<T> >
-class MutantStack {
+class MutantStack : public std::stack<T> {
  private:
  protected:
   Cont c;
