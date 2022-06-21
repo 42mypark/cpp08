@@ -1,12 +1,9 @@
 #include <algorithm>
 
 template <typename T>
-int easyfind(T& container, int target) {
-  int cnt = 0;
-  for (typename T::iterator itr = container.begin(); itr != container.end(); ++itr) {
-    if (*itr == target)
-      return cnt;
-    cnt++;
-  }
-  return -1;
+typename T::iterator easyfind(T& container, int target) {
+  typename T::iterator result = find(container.begin(), container.end(), target);
+  if (result == container.end())
+    throw std::out_of_range("easyfind: key not found");
+  return result;
 }
